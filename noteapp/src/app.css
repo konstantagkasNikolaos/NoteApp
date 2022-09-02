@@ -1,0 +1,74 @@
+header h1{
+    margin-top: 20px;
+    text-align: center;
+    text-shadow: 2px 2px yellow;
+}
+
+header p {
+    text-align: right;
+    font-size: small;
+    font-style: italic;
+    margin-bottom: 50px;
+}
+
+footer p{
+    font-size: small;
+    position: fixed;
+    bottom: 0;
+    right: 5px;
+}
+
+main {
+    border: 5px solid black;
+    border-radius: 20px;
+    width: 60%;
+    margin: auto;
+    padding:0px 50px;
+    min-height: 600px;
+    background: yellow;
+    box-shadow: 10px 10px 5px black;
+}
+
+main ul {
+    padding: 20px 60px;
+}
+
+li {
+    margin: 20px 0px;
+}
+
+li:hover {
+    cursor: pointer;
+}
+
+
+.notes-button {
+   text-align: center;
+}
+
+.notes-button button {
+    margin:0px 5px;
+    width: 20%;
+    padding: 5px 20px;
+    border-radius: 10px;
+    font-size: large;
+    background-color: antiquewhite;
+    box-shadow: 5px 5px 5px black;
+}
+
+.notes-button button:hover {
+   cursor: pointer;
+}
+
+.mark-notes-done {
+    text-decoration: line-through;
+}
+
+.mark-notes-not-done {
+    text-decoration: none;
+}
+
+.error {
+    font-size: small;
+    color: red;
+}
