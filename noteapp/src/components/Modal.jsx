@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./modal.css";
+import "../css/modal.css";
 
 const Modal = ({ show, hide, save }) => {
   const [note, setNote] = useState({ text: "", error: false });
@@ -8,7 +8,9 @@ const Modal = ({ show, hide, save }) => {
   const changeNote = (event) =>
     setNote({ text: event.target.value, error: false });
 
-  const saveNote = () => {
+  const saveNote = (event) => {
+    event.preventDefault();
+
     if (note.text !== "") {
       save(note.text);
       setNote({ text: "", error: false });
@@ -18,13 +20,17 @@ const Modal = ({ show, hide, save }) => {
     }
   };
 
+  const closeModal = () => {
+    setNote({ text: "", error: false });
+    hide();
+  };
+
   return (
     <>
       <div className={modalState}>
         <div className="modal">
-          <div className="modal-content">
-            {/*//TODO fix X button*/}
-            <span className="close" onClick={hide}>
+          <form className="modal-content" onSubmit={saveNote}>
+            <span className="close" onClick={closeModal}>
               &times;
             </span>
             <p>Insert your New Note</p>
@@ -36,10 +42,10 @@ const Modal = ({ show, hide, save }) => {
             <p className="error">
               {note.error ? "Cannot save, an empty note..." : ""}
             </p>
-            <button className="save-modal" onClick={saveNote}>
+            <button type="submit" className="save-modal">
               Save
             </button>
-          </div>
+          </form>
         </div>
       </div>
     </>

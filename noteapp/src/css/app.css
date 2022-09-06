@@ -11,8 +11,15 @@ header p {
     margin-bottom: 50px;
 }
 
-footer p{
+footer div{
     font-size: small;
+    text-align: center;
+    margin-top: 20px;
+    font-style: italic;
+}
+
+footer p{
+    font-size: x-small;
     position: fixed;
     bottom: 0;
     right: 5px;
@@ -54,6 +61,41 @@ li:hover {
     font-size: large;
     background-color: antiquewhite;
     box-shadow: 5px 5px 5px black;
+}
+
+@media only screen and (min-width:1121px) and (max-width: 1306px) {
+    .notes-button button {
+        margin: 0px 5px;
+        width: 20%;
+        padding: 5px 15px;
+        border-radius: 10px;
+        font-size: medium;
+        background-color: antiquewhite;
+        box-shadow: 5px 5px 5px black;
+    }
+}
+
+@media only screen and (min-width:550px) and (max-width: 1120px) {
+    .notes-button button {
+        margin: 0px 5px;
+        width: 20%;
+        padding: 5px 10px;
+        border-radius: 10px;
+        font-size: small;
+        background-color: antiquewhite;
+        box-shadow: 5px 5px 5px black;
+    }
+}
+
+@media only screen and (min-width:100px) and (max-width: 549px) {
+    .notes-button button {
+        margin: 0px 5px;
+        width: 100%;
+        border-radius: 10px;
+        font-size: small;
+        background-color: antiquewhite;
+        box-shadow: 5px 5px 5px black;
+    }
 }
 
 .notes-button button:hover {

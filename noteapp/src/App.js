@@ -1,25 +1,27 @@
-import "./app.css";
-import React, { useState } from "react";
-import Modal from "./component/Modal";
+import "./css/app.css";
+import React, { useEffect, useState } from "react";
+import Modal from "./components/Modal";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import ListOfNotes from "./components/ListOfNotes";
 
 function App() {
-  const [notes, setNotes] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [notes, setNotes] = useState(
+    JSON.parse(localStorage.getItem("notes")) || []
+  );
 
-  const openModal = () => {
-    setShowModal(true);
-  };
-
-  const closeModal = () => {
-    setShowModal(false);
-  };
+  useEffect(() => {
+    localStorage.setItem("notes", JSON.stringify(notes));
+  }, [notes]);
 
   const saveNote = (text) => {
-    closeModal();
+    setShowModal(false);
     setNotes([
       ...notes,
       { id: notes.length + 1, descr: text, completed: false },
     ]);
+    localStorage.setItem("notes", JSON.stringify(notes));
   };
 
   const markNote = (id) => {
@@ -37,36 +39,28 @@ function App() {
     setNotes(notes.filter((note) => !note.completed));
   };
 
+  const clearAll = () => {
+    setNotes([]);
+  };
+
   return (
     <>
-      <header>
-        <h1>Note Taking App</h1>
-        <p>A simple note taking app</p>
-      </header>
+      <Header />
       <main>
         <h2>Notes</h2>
         <div className="notes-button">
-          <button onClick={openModal}>Add Note</button>
+          <button onClick={() => setShowModal(true)}>Add Note</button>
           <button onClick={clearNotes}>Clear marked</button>
+          <button onClick={clearAll}>Clear all</button>
         </div>
-        <ul>
-          {notes.map((note) => (
-            <li
-              className={
-                note.completed ? "mark-notes-done " : "mark-notes-not-done "
-              }
-              key={note.id}
-              onClick={() => markNote(note.id)}
-            >
-              {note.descr}
-            </li>
-          ))}
-        </ul>
+        <ListOfNotes notes={notes} markNote={markNote} />
       </main>
-      <Modal show={showModal} hide={closeModal} save={saveNote} />
-      <footer>
-        <p>Created for training purposes</p>
-      </footer>
+      <Footer />
+      <Modal
+        show={showModal}
+        hide={() => setShowModal(false)}
+        save={saveNote}
+      />
     </>
   );
 }
